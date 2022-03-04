@@ -4,26 +4,47 @@ const headersEl = document.getElementById('headers');
 const configEl = document.getElementById('config');
 
 const get = () => {
-  axios.get('https://jsonplaceholder.typicode.com/posts')
-    .then((response) => {
-      renderOutput(response)
-    })
+  const config = {
+    params: {
+      _limit: 5
+    } // Parametro da rota que trás como limite apenas 5 dados
+  }
+  axios.get('https://jsonplaceholder.typicode.com/posts', config)
+    .then((response) => { renderOutput(response) })
 }
 
 const post = () => {
-  console.log('post');
+  const data = {
+    title: 'teste',
+    body: 'testeee',
+    userId: '1'
+  }
+  axios.post('https://jsonplaceholder.typicode.com/posts', data)
+    .then((response) => { renderOutput(response) })
 }
 
+// Passar o id como parâmetro
 const put = () => {
-  console.log('put');
+  const data = {
+    title: 'Atualizado',
+    body: 'Source Atualizado',
+    userId: '2'
+  }
+  axios.put('https://jsonplaceholder.typicode.com/posts/1', data)
+    .then((response) => { renderOutput(response) })
 }
 
 const patch = () => {
-  console.log('patch');
+  const data = {
+    title: 'Atualizado Somente o titulo',
+  }
+  axios.patch('https://jsonplaceholder.typicode.com/posts/2', data)
+    .then((response) => { renderOutput(response) })
 }
 
 const del = () => {
-  console.log('delete');
+  axios.delete('https://jsonplaceholder.typicode.com/posts/2')
+    .then((response) => { renderOutput(response) })
 }
 
 const multiple = () => {
